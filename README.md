@@ -11,3 +11,6 @@
 为什么要使用双斜杠原因为：
 
 由于我们是把路径当成是一个字符串传进去的，在字符串中斜杠“\”被当做转义字符识别，所以要用“\\”才能表示一个斜杠。
+searchUrl = "http://ks.pconline.com.cn/product.shtml?"
+phone_id_name = "E:\python\\ueprice_crawler\phone.txt"
+
