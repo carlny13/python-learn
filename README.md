@@ -14,5 +14,10 @@
 searchUrl = "http://ks.pconline.com.cn/product.shtml?"
 phone_id_name = "E:\python\\ueprice_crawler\phone.txt"
 
-抓见面时要注意一下selector，
+抓页面时要注意一下selector，
+
+读文件，打印文件
+f = open('E:\python\ueprice_crawler\phone_price4.txt', 'r')
+print f.read()
+
 
