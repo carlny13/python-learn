@@ -36,6 +36,23 @@ bs0bj=BeautifulSoup(html)
 priceList=bs0bj.find_all("div",{"class":{"price-normal","total-score"}})
 for price in priceList:
     print(price.get_text()) #提取价格信息\评分
+
+上面代码的升级版，把要提取的5个信息放在同一行输入，且逗号分隔：
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+html = urlopen("http://detail.zol.com.cn/cell_phone/index398689.shtml")
+bsObj = BeautifulSoup(html.read())
+result1=bsObj.h1.text+","+bsObj.h3.span.text+","+bsObj.script.text  #提取标题\上市时间\URL
+
+bs0bj=BeautifulSoup(html)
+priceList=bsObj.find_all("div",{"class":"price-normal"})
+for price in priceList:
+    price1=(price.get_text()) #/价格信息
+priceList1=bsObj.find_all("div",{"class":"total-score"})
+for score in priceList1:
+    score1=(score.strong.get_text()) #/评分信息
+
+print(result1+","+price1+","+score1)
     
     
 执行单页面爬虫：    
