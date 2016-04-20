@@ -50,3 +50,37 @@ def getLinks(pageUrl):
                 pages.add(newPage)
                 getLinks(newPage)
 getLinks("")
+
+
+#尝试遍历输出：
+#coding=utf-8
+
+from bs4 import  BeautifulSoup
+import  urllib2
+import re
+Items=[]
+for pages in range(2,105):
+    if pages==0:
+        url="http://detail.zol.com.cn/cell_phone_index/subcate57_list_1.html?"
+    else :
+        url="http://detail.zol.com.cn/cell_phone_index/subcate57_0_list_1_0_1_2_0_"+str(pages)+".html"
+    try:
+        html=urllib2.urlopen(url)
+        bsObj=BeautifulSoup(html)
+        #print bsObj.h1.text.encode('utf-8')
+        priceList=bsObj.find_all("div",{"class":"price-normal"})
+        for price in priceList:
+            price1=(price.get_text()) #/princ infomation
+        priceList1=bsObj.find_all("div",{"class":"total-score"})
+        for score in priceList1:
+            score1=(score.strong.get_text()) #/score infomation
+                #print type(price.get_text())
+            text=bsObj.h1.text+","+bsObj.h3.span.text+" ,"+bsObj.script.text +","+price.get_text()+","+score.strong.get_text()
+                #print result.encode('utf-8')
+            Items.append(text)
+    except:
+        continue
+f=open("F:/zlo_test1.txt","w")
+for n in Items:
+    f.write(n)
+print len(Items)
